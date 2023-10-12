@@ -1,0 +1,183 @@
+html
+{
+    width: 100%;
+}
+
+body
+{
+    position: fixed;
+    overflow-y: scroll;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    transition: background-color 0.5s ease-in;
+}
+
+
+
+.gauge-container {
+    width: 50rem;
+    height: 50rem;
+    display: block;
+    padding: 10px;
+}
+  
+#gauge-flex
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+#main-container
+{
+    display: flex;
+    justify-content: center;
+}
+#main-image
+{
+    height: 40vh;
+}
+
+.gauge-container {
+    width: 20vh;
+    height: 20vh;
+    display: block;
+    padding: 10px;
+}
+.gauge-container > .gauge .dial {
+    stroke: #eee;
+    stroke-width: 2;
+    fill: rgba(0,0,0,0);
+}
+.gauge-container > .gauge .value {
+    stroke: #F17E25;
+    stroke-width: 2;
+    fill: rgba(0,0,0,0);
+}
+.gauge-container > .gauge .value-text {
+    fill: #F6AB30;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+#sun-svg
+{
+    height: 7vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition: all 2s ease;
+}  
+
+#rain-svg
+{
+    height: 7vh;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.sunny-cloud
+{
+    position: absolute;
+    z-index: -20;
+}
+.rainy-cloud
+{
+    position: absolute;
+    z-index: -20;
+}
+
+.rainy
+{
+    background-color: #010133;
+}
+
+@keyframes fadein {
+    from
+    {
+        opacity: 0;
+    }
+    to
+    {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from
+    {
+        opacity: 1;
+    }
+    to
+    {
+        opacity: 0;
+    }
+}
+
+.visible{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.cloudy
+{
+    background-color: #010133;
+}
+
+.sunny
+{
+    background-color: #afdcff;
+}
+
+.invisible
+{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.sun-up
+{
+    display: block;
+    animation: rotation 9s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+.raining
+{
+    display: block;
+}
+
+.sunny-text
+{
+    text-align: center;
+    color: #00994F;
+    font-weight: bolder;
+    font-family: Ubuntu,Helvetica,Arial,sans-serif;
+    font-size: 1.5rem;
+}
+
+#API-description
+{
+    background: #1dc460;
+    border-radius: 5px;
+    padding: 15px;
+    margin: auto;
+    width: 50%;
+    height: 40%;
+    text-align: center;
+    transition: opacity 1s;
+}
