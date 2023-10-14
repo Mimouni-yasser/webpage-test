@@ -181,3 +181,48 @@ body
     text-align: center;
     transition: opacity 1s;
 }
+
+
+.toggle {
+    position : relative ;
+    display : inline-block;
+    width : 120px;
+    height : 52px;
+    background-color: #afdcff;
+    border-radius: 30px;
+    border: 2px solid #1dc460;
+}
+       
+/* After slide changes */
+.toggle:after {
+    content: '';
+    position: absolute;
+    width: 53px;
+    height: 53px;
+    border-radius: 50%;
+    background-color: #1dc460;
+    top: 0px; 
+    left: 0px;
+    transition:  all 0.5s;
+}
+       
+/* Toggle text */
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+       
+/* Checkbox checked effect */
+.checkbox:checked + .toggle::after {
+    left : 66px; 
+}
+       
+/* Checkbox checked toggle label bg color */
+.checkbox:checked + .toggle {
+    background-color: #0D91D0;
+}
+       
+/* Checkbox vanished */
+.checkbox { 
+    display : none;
+}

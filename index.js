@@ -43,7 +43,34 @@ wss.on('connection', (ws) => {
     const metadata = { id};
 
     clients.set(ws, metadata);
-    console.log(ws)
+
+    ws.on("message", (message) => {
+      //add pump status to payload, if the pump status already exists, update it
+      if(message == 'pump ON') value = "ON";
+      else if(message == 'pump OFF') value = "OFF";
+      topic = "pump"
+      let topicExists = false;
+      for (let i = 0; i < payload.length; i++) {
+        if (payload[i].var === topic) {
+            // Topic already exists, update its value
+            payload[i].val = value;
+            topicExists = true;
+            break;
+        }
+      }
+      if(!topicExists){
+        payload.push(
+        {
+          var: topic,
+          val: value
+        })
+      }
+
+      //send payload to all clients
+      const outbound = JSON.stringify(payload);
+      notifyAll(outbound)
+    })
+
     if(payload.length > 0)
       ws.send(JSON.stringify(payload))
 });
@@ -66,6 +93,7 @@ function notifyAll(outbound)
     client.send(outbound);
   });
 }
+
 
 
   ///////////////////////////mqtt server for data/////////////////////////////////////////////

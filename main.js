@@ -75,7 +75,7 @@ for(i=0; i<clouds_sun.length; i++)
 	clouds_sun[i].style.left = ((i+1)%2*57)+'vh'
 }
 
-
+let API = false;
 socket = new WebSocket('ws://'+window.location.hostname+':7071')
 
 socket.onmessage = function(event)
@@ -90,21 +90,14 @@ socket.onmessage = function(event)
 			API = true;
 			API_Val = value;
 			text_box = document.getElementById("API-description");
-			text_box.style.opacity = 0;
-
-			setTimeout(() => {
-				text_box.innerHTML ="<h2>"+value+"</h2>";
-				
-				// Set the opacity of the new text to 1 to fade it in
-				text_box.style.opacity = 1;
-			  }, 500);
+			text_box.innerHTML = '<h2>' + value + '</h2>';
 		} 
 		else if(Object.keys(gauges).includes(topic))
 		{
 			gauges[topic].setValueAnimated(value)
 		}
-	if(API) handleAPI(API_Val);
 	}
+	if(API) handleAPI(API_Val);
 }
 
 function getRandomInt(min, max) {
@@ -113,7 +106,7 @@ function getRandomInt(min, max) {
 
 async function handleAPI(state)
 {
-	if(state.includes("sunny"))
+	if(state.includes("sun"))
 	{
 		document.getElementById("rain-svg").setAttribute('class', 'invisible')
 		document.getElementById("sun-svg").setAttribute('class', 'sun-up')
@@ -125,7 +118,7 @@ async function handleAPI(state)
 		}
 	}
 	
-	else if (state.includes("rainy")) 
+	else if (state.includes("rain")) 
 	{
 		document.body.setAttribute('class', 'rainy')
 		document.getElementById("sun-svg").setAttribute('class', 'invisible')
@@ -138,3 +131,14 @@ async function handleAPI(state)
 
 	}
 }
+
+const pumpSwitch = document.getElementById('switch');
+
+pumpSwitch.addEventListener('change', () => {
+	console.log(pumpSwitch.checked)
+	if (pumpSwitch.checked) {
+		socket.send("pump ON")
+	} else {
+		socket.send("pump OFF")
+	}
+});
