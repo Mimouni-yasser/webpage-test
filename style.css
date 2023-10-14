@@ -13,14 +13,6 @@ body
     transition: background-color 0.5s ease-in;
 }
 
-
-
-.gauge-container {
-    width: 50rem;
-    height: 50rem;
-    display: block;
-    padding: 10px;
-}
   
 #gauge-flex
 {
@@ -42,7 +34,7 @@ body
 
 .gauge-container {
     width: 20vh;
-    height: 20vh;
+    height: 15vh;
     display: block;
     padding: 10px;
 }
@@ -167,7 +159,7 @@ body
     color: #00994F;
     font-weight: bolder;
     font-family: Ubuntu,Helvetica,Arial,sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 #API-description

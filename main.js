@@ -92,6 +92,17 @@ socket.onmessage = function(event)
 			text_box = document.getElementById("API-description");
 			text_box.innerHTML = '<h2>' + value + '</h2>';
 		} 
+		else if(topic == 'pump')
+		{
+			if(value == 'ON')
+			{
+				pumpSwitch.checked = true;
+			}
+			else if(value == 'OFF')
+			{
+				pumpSwitch.checked = false;
+			}
+		}
 		else if(Object.keys(gauges).includes(topic))
 		{
 			gauges[topic].setValueAnimated(value)
