@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 
 
 
-var server = app.listen(8080, function () {
+var server = app.listen(5001, function () {
    var host = server.address().address
    var port = server.address().port
    
@@ -65,6 +65,8 @@ wss.on('connection', (ws) => {
           val: value
         })
       }
+
+      mqtt_client.publish("irrigo/pump", value);
 
       //send payload to all clients
       const outbound = JSON.stringify(payload);
